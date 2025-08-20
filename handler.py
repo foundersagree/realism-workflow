@@ -35,7 +35,7 @@ def view(fn, sub, typ):
     return r.content
 
 def load_workflow():
-    with open("/comfyui/workflows/ghost_realism_workflow.json") as f: return json.load(f)
+    with open("/comfyui/workflows/realism_workflow.json") as f: return json.load(f)
 
 def run_flow(pos, neg):
     wf = load_workflow()

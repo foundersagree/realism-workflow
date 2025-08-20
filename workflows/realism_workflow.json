@@ -1,0 +1,1140 @@
+{
+  "id": "794f9f17-b8e9-49fe-a822-c4fee54f1e5a",
+  "revision": 0,
+  "last_node_id": 20,
+  "last_link_id": 58,
+  "nodes": [
+    {
+      "id": 17,
+      "type": "LoraLoader",
+      "pos": [
+        164.53709411621094,
+        652.4201049804688
+      ],
+      "size": [
+        349.8186340332031,
+        127.28739166259766
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 28
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            30
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "LoraLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "iphone_mirror_selfie_v01b.safetensors",
+        0.9000000000000001,
+        1
+      ]
+    },
+    {
+      "id": 18,
+      "type": "LoraLoader",
+      "pos": [
+        523.9496459960938,
+        654.874267578125
+      ],
+      "size": [
+        270,
+        126
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 30
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            50
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            53
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "LoraLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Dynamic_Lighting_by_Stable_Yogi_SDXL3_v1.safetensors",
+        0.20000000000000004,
+        1
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoraLoader",
+      "pos": [
+        494.10211181640625,
+        485.4129943847656
+      ],
+      "size": [
+        270,
+        126
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 23
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "LoraLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "add-detail-xl.safetensors",
+        0.4000000000000001,
+        1
+      ]
+    },
+    {
+      "id": 10,
+      "type": "LoraLoader",
+      "pos": [
+        213.9246368408203,
+        484.15045166015625
+      ],
+      "size": [
+        270,
+        126
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 48
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 49
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            23
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "LoraLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "RealSkin_xxXL_v1.safetensors",
+        3.500000000000001,
+        2.0000000000000004
+      ]
+    },
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        224.44076538085938,
+        256.7891845703125
+      ],
+      "size": [
+        532.6058349609375,
+        98
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            48
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            49
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "CheckpointLoaderSimple",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "gonzalomoXLFluxPony_v40UnityXLDMD.safetensors"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        860.5919799804688,
+        723.1854858398438
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 55
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "Negative Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "CLIPTextEncode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "bad hands, extra fingers, missing limbs, blurry, lowres, cartoon, anime, fantasy, gothic, emo, glitch, overexposed, deformed, cropped, watermark, sci-fi, non-human, unrealistic skin, poor anatomy, tattoes, piercings,"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [
+        862.2598266601562,
+        482.57977294921875
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 56
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "title": "Positive Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "CLIPTextEncode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "realistic instagram influencer, hot platinum blonde girl with shadow roots, piercing blue eyes, full lips, fit slim-thick body, confident attitude, clean face with soft makeup, white skin with natural texture, long straight hair, modern bedroom with violet LED ceiling lights, white bedsheets, gamer setup in the background,minimalistic chill room, soft cinematic lighting, photorealistic, real camera lens, no filter, soft shadows, aesthetic look, confident and sexy but class"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 7,
+      "type": "StringPreview",
+      "pos": [
+        925.0077514648438,
+        297.273193359375
+      ],
+      "size": [
+        210,
+        93
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "input_string",
+          "type": "STRING",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output_string",
+          "type": "STRING",
+          "links": [
+            58
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_stringessentials",
+        "ver": "a4821114114ec0e9931eaac0435b9c085429e0b2",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 8,
+      "type": "CLIPTextEncode",
+      "pos": [
+        880.33837890625,
+        1582.9334716796875
+      ],
+      "size": [
+        397.5799865722656,
+        124.9800033569336
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 54
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 58
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "title": "ALT",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.41",
+        "Node name for S&R": "CLIPTextEncode",
+        "widget_ue_connectable": {
+          "text": true
+        }
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 6,
+      "type": "ImpactWildcardProcessor",
+      "pos": [
+        875.2958374023438,
+        1046.4666748046875
+      ],
+      "size": [
+        400,
+        248
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "processed text",
+          "type": "STRING",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "705698faf242851881abd7d1e1774baa3cf47136",
+        "Node name for S&R": "ImpactWildcardProcessor",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        ", __1-camera_posses__, __1-outfit__, with __1-accesories__, ",
+        ", hands holding phone from above, selfie angle, tight black gym set with white sneakers, with black sunglasses, ",
+        "reproduce",
+        159436847158830,
+        "randomize",
+        "Select the Wildcard to add to the text"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "EmptyLatentImage",
+      "pos": [
+        1308.8076171875,
+        730.693603515625
+      ],
+      "size": [
+        270,
+        106
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "EmptyLatentImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "type": "ImpactConcatConditionings",
+      "pos": [
+        1337.1029052734375,
+        627.2503662109375
+      ],
+      "size": [
+        204.38671875,
+        66
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning1",
+          "type": "CONDITIONING",
+          "link": 14
+        },
+        {
+          "name": "conditioning2",
+          "type": "CONDITIONING",
+          "link": 15
+        },
+        {
+          "name": "conditioning3",
+          "type": "CONDITIONING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-impact-pack",
+        "ver": "df330c1b06c094b2b7c4c606fb6f6dac48d39864",
+        "Node name for S&R": "ImpactConcatConditionings",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 2,
+      "type": "KSampler",
+      "pos": [
+        1595.126953125,
+        607.450439453125
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 57
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 16
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 10
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "KSampler",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        313896956264331,
+        "fixed",
+        12,
+        1,
+        "lcm",
+        "karras",
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "type": "VAEDecode",
+      "pos": [
+        1723.0306396484375,
+        520.0938110351562
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 20
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "VAEDecode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 12,
+      "type": "SaveImage",
+      "pos": [
+        1935.8677978515625,
+        395.4569091796875
+      ],
+      "size": [
+        630.3510131835938,
+        834.4739379882812
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 21
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "SaveImage",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "kimi_valoe_"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "LoraLoader",
+      "pos": [
+        507.90423583984375,
+        924.4822998046875
+      ],
+      "size": [
+        270,
+        126
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 50
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 53
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            57
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            54,
+            55,
+            56
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "LoraLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "epiCRealismXL-KiSSEnhancer_Lora.safetensors",
+        0.5000000000000001,
+        1
+      ]
+    },
+    {
+      "id": 16,
+      "type": "LoraLoader",
+      "pos": [
+        187.03956604003906,
+        926.6605224609375
+      ],
+      "size": [
+        301.175537109375,
+        126
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 26
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 27
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            28
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.47",
+        "Node name for S&R": "LoraLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "igbaddie-XL.safetensors",
+        0.6000000000000001,
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      10,
+      4,
+      0,
+      2,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      11,
+      6,
+      0,
+      7,
+      0,
+      "STRING"
+    ],
+    [
+      14,
+      3,
+      0,
+      9,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      15,
+      8,
+      0,
+      9,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      16,
+      9,
+      0,
+      2,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      18,
+      11,
+      0,
+      2,
+      3,
+      "LATENT"
+    ],
+    [
+      20,
+      2,
+      0,
+      14,
+      0,
+      "LATENT"
+    ],
+    [
+      21,
+      14,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      22,
+      1,
+      2,
+      14,
+      1,
+      "VAE"
+    ],
+    [
+      23,
+      10,
+      0,
+      15,
+      0,
+      "MODEL"
+    ],
+    [
+      24,
+      10,
+      1,
+      15,
+      1,
+      "CLIP"
+    ],
+    [
+      26,
+      15,
+      0,
+      16,
+      0,
+      "MODEL"
+    ],
+    [
+      27,
+      15,
+      1,
+      16,
+      1,
+      "CLIP"
+    ],
+    [
+      28,
+      16,
+      0,
+      17,
+      0,
+      "MODEL"
+    ],
+    [
+      29,
+      16,
+      1,
+      17,
+      1,
+      "CLIP"
+    ],
+    [
+      30,
+      17,
+      0,
+      18,
+      0,
+      "MODEL"
+    ],
+    [
+      31,
+      17,
+      1,
+      18,
+      1,
+      "CLIP"
+    ],
+    [
+      48,
+      1,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      49,
+      1,
+      1,
+      10,
+      1,
+      "CLIP"
+    ],
+    [
+      50,
+      18,
+      0,
+      20,
+      0,
+      "MODEL"
+    ],
+    [
+      53,
+      18,
+      1,
+      20,
+      1,
+      "CLIP"
+    ],
+    [
+      54,
+      20,
+      1,
+      8,
+      0,
+      "CLIP"
+    ],
+    [
+      55,
+      20,
+      1,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      56,
+      20,
+      1,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      57,
+      20,
+      0,
+      2,
+      0,
+      "MODEL"
+    ],
+    [
+      58,
+      7,
+      0,
+      8,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Model",
+      "bounding": [
+        206.8366241455078,
+        175.33059692382812,
+        565.943115234375,
+        202.44725036621094
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "loras",
+      "bounding": [
+        132.46878051757812,
+        399.5075988769531,
+        683.6511840820312,
+        412.537841796875
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "if you want ig girls + more ehnaced",
+      "bounding": [
+        160.590576171875,
+        839.964599609375,
+        635.482666015625,
+        230.5263671875
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Prompt",
+      "bounding": [
+        838.3222045898438,
+        400.7723388671875,
+        440.6380920410156,
+        546.50732421875
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "Wildcards",
+      "bounding": [
+        813.6011962890625,
+        962.8272705078125,
+        526.8359985351562,
+        765.541015625
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 6,
+      "title": "Processssssssssiiinnngggg",
+      "bounding": [
+        1299.986083984375,
+        447.5466613769531,
+        581.3159790039062,
+        439.2106628417969
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 7,
+      "title": "Result",
+      "bounding": [
+        1912.88916015625,
+        310.89373779296875,
+        670.0911865234375,
+        946.3796997070312
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7972024500000053,
+      "offset": [
+        313.3320647437298,
+        -273.3319136154719
+      ]
+    },
+    "frontendVersion": "1.23.4",
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
