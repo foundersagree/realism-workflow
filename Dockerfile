@@ -1,6 +1,9 @@
 FROM runpod/worker-comfyui:5.1.0-base
 
-RUN comfy-node-install ComfyUI-Impact-Pack
+RUN cd /comfyui/custom_nodes && \
+    git clone https://github.com/ltdrdata/ComfyUI-Impact-Pack.git
+
+RUN cd /comfyui/custom_nodes/ComfyUI-Impact-Pack && pip install -r requirements.txt
 
 COPY workflows /comfyui/workflows
 COPY handler.py /workspace/handler.py
