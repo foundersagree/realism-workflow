@@ -6,24 +6,7 @@ WS = f"ws://127.0.0.1:{PORT}/ws?clientId="
 
 def start():
     if getattr(start, "_started", False): return
-    try:
-        def link_dir(src, dst):
-            if os.path.isdir(src) and not os.path.exists(dst):
-                os.makedirs(os.path.dirname(dst), exist_ok=True)
-                os.symlink(src, dst)
-        # Workspace mount
-        link_dir("/workspace/models/checkpoints", f"{COMFY_DIR}/models/checkpoints")
-        link_dir("/workspace/models/loras", f"{COMFY_DIR}/models/loras")
-        # RunPod Network Volume default mount
-        link_dir("/runpod-volume/models/checkpoints", f"{COMFY_DIR}/models/checkpoints")
-        link_dir("/runpod-volume/models/loras", f"{COMFY_DIR}/models/loras")
-        # Optional env override root
-        mount_root = os.environ.get("MODELS_MOUNT_ROOT")
-        if mount_root:
-            link_dir(os.path.join(mount_root, "models/checkpoints"), f"{COMFY_DIR}/models/checkpoints")
-            link_dir(os.path.join(mount_root, "models/loras"), f"{COMFY_DIR}/models/loras")
-    except Exception as _e:
-        pass
+    # The entire try...except block for creating symbolic links has been removed.
     subprocess.Popen(["python","main.py","--listen","127.0.0.1","--port",str(PORT),"--disable-auto-launch"], cwd=COMFY_DIR)
     for _ in range(120):
         try:
@@ -60,25 +43,16 @@ def view(fn, sub, typ):
     r = requests.get(f"{HOST}/view", params={"filename":fn,"subfolder":sub,"type":typ}, timeout=120); r.raise_for_status()
     return r.content
 
-def get_available_nodes():
-    try:
-        r = requests.get(f"{HOST}/object_info", timeout=10)
-        if r.ok:
-            return r.json()
-        return {}
-    except:
-        return {}
-
 def get_models(model_type):
     """Return list of available model file names for a given type, e.g. 'checkpoints', 'loras'"""
     try:
         r = requests.get(f"{HOST}/models", params={"type": model_type}, timeout=10)
         if r.ok:
             data = r.json()
-            if isinstance(data, dict) and "models" in data:
-                return data["models"]
-            if isinstance(data, list):
-                return data
+            # Handle both list and dict response formats
+            models = data if isinstance(data, list) else data.get("models", [])
+            # The API returns a list of dicts, we need the file names
+            return [model['name'] for model in models if 'name' in model]
         return []
     except Exception:
         return []
@@ -88,16 +62,10 @@ def load_workflow():
         return json.load(f)
 
 def run_flow(pos, neg):
-    available_nodes = get_available_nodes()
-    required_nodes = ["StringPreview", "ImpactConcatConditionings"]
-    missing_nodes = [node for node in required_nodes if node not in available_nodes]
-    
-    if missing_nodes:
-        print(f"Warning: Missing nodes: {missing_nodes}")
-        print(f"Available custom nodes: {[k for k in available_nodes.keys() if not k.startswith('_')][:10]}...")
-    
+    # This pre-flight check is great for debugging!
     checkpoints = set(get_models("checkpoints"))
     loras = set(get_models("loras"))
+    
     missing_models = []
     required_ckpt = "gonzalomoXLFluxPony_v40UnityXLDMD.safetensors"
     required_loras = [
@@ -108,11 +76,13 @@ def run_flow(pos, neg):
         "Dynamic_Lighting_by_Stable_Yogi_SDXL3_v1.safetensors",
         "epiCRealismXL-KiSSEnhancer_Lora.safetensors",
     ]
+
     if required_ckpt and required_ckpt not in checkpoints:
         missing_models.append(("checkpoint", required_ckpt))
     for name in required_loras:
         if name not in loras:
             missing_models.append(("lora", name))
+            
     if missing_models:
         print("Missing models detected:")
         for mtype, name in missing_models:
