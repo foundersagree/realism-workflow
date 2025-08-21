@@ -4,26 +4,27 @@ PORT = 8188
 HOST = f"http://127.0.0.1:{PORT}"
 WS = f"ws://127.0.0.1:{PORT}/ws?clientId="
 
+def setup_models():
+    print("=== DEBUG: Checking for model mounts ===")
+    potential_mounts = ["/workspace/models", "/runpod-volume/models", "/network/models", "/mnt/models"]
+    
+    for mount in potential_mounts:
+        if os.path.exists(mount):
+            print(f"✅ Found: {mount}")
+            try:
+                contents = os.listdir(mount)
+                print(f"   Contents: {contents}")
+            except:
+                print(f"   (Cannot list contents)")
+        else:
+            print(f"❌ Missing: {mount}")
+    
+    
+    print("=== ComfyUI will use network volume directly (no copying needed) ===")
+
 def start():
     if getattr(start, "_started", False): return
-    try:
-        def link_dir(src, dst):
-            if os.path.isdir(src) and not os.path.exists(dst):
-                os.makedirs(os.path.dirname(dst), exist_ok=True)
-                os.symlink(src, dst)
-        # Workspace mount
-        link_dir("/workspace/models/checkpoints", f"{COMFY_DIR}/models/checkpoints")
-        link_dir("/workspace/models/loras", f"{COMFY_DIR}/models/loras")
-        # RunPod Network Volume default mount
-        link_dir("/runpod-volume/models/checkpoints", f"{COMFY_DIR}/models/checkpoints")
-        link_dir("/runpod-volume/models/loras", f"{COMFY_DIR}/models/loras")
-        # Optional env override root
-        mount_root = os.environ.get("MODELS_MOUNT_ROOT")
-        if mount_root:
-            link_dir(os.path.join(mount_root, "models/checkpoints"), f"{COMFY_DIR}/models/checkpoints")
-            link_dir(os.path.join(mount_root, "models/loras"), f"{COMFY_DIR}/models/loras")
-    except Exception as _e:
-        pass
+    setup_models()  # Setup models BEFORE starting ComfyUI
     subprocess.Popen(["python","main.py","--listen","127.0.0.1","--port",str(PORT),"--disable-auto-launch"], cwd=COMFY_DIR)
     for _ in range(120):
         try:
@@ -70,18 +71,38 @@ def get_available_nodes():
         return {}
 
 def get_models(model_type):
-    """Return list of available model file names for a given type, e.g. 'checkpoints', 'loras'"""
+    """Return list of available model file names from both ComfyUI API and direct file system"""
+    models = set()
+    
+    # Try ComfyUI API first
     try:
         r = requests.get(f"{HOST}/models", params={"type": model_type}, timeout=10)
         if r.ok:
             data = r.json()
             if isinstance(data, dict) and "models" in data:
-                return data["models"]
-            if isinstance(data, list):
-                return data
-        return []
+                models.update(data["models"])
+            elif isinstance(data, list):
+                models.update(data)
     except Exception:
-        return []
+        pass
+    
+    # Also check direct file system paths where ComfyUI looks
+    search_paths = [
+        f"/comfyui/models/{model_type}",
+        f"/runpod-volume/models/{model_type}",
+        f"/workspace/models/{model_type}"
+    ]
+    
+    for path in search_paths:
+        if os.path.isdir(path):
+            try:
+                for file in os.listdir(path):
+                    if file.endswith('.safetensors'):
+                        models.add(file)
+            except:
+                pass
+    
+    return list(models)
 
 def load_workflow():
     with open("/comfyui/workflows/realism_workflow_api.json") as f: 
