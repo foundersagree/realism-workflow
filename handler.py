@@ -35,28 +35,15 @@ def view(fn, sub, typ):
     return r.content
 
 def load_workflow():
-    with open("/comfyui/workflows/realism_workflow.json") as f: return json.load(f)
-
-def get_node_by_id(workflow, node_id):
-    for node in workflow.get("nodes", []):
-        if node.get("id") == node_id:
-            return node
-    return None
+    with open("/comfyui/workflows/realism_workflow_api.json") as f: return json.load(f)
 
 def run_flow(pos, neg):
     wf = load_workflow()
     
-    # Find nodes by their IDs and update inputs
-    pos_node = get_node_by_id(wf, 3)  # CLIPTextEncode for positive prompt
-    neg_node = get_node_by_id(wf, 4)  # CLIPTextEncode for negative prompt  
-    sampler_node = get_node_by_id(wf, 2)  # KSampler
+    wf["3"]["inputs"]["text"] = pos  # Positive prompt
+    wf["4"]["inputs"]["text"] = neg  # Negative prompt
+    wf["2"]["inputs"]["seed"] = int(time.time()*1e6)%2**32  # Random seed
     
-    if pos_node and "widgets_values" in pos_node:
-        pos_node["widgets_values"][0] = pos
-    if neg_node and "widgets_values" in neg_node:
-        neg_node["widgets_values"][0] = neg
-    if sampler_node and "widgets_values" in sampler_node:
-        sampler_node["widgets_values"][0] = int(time.time()*1e6)%2**32
     cid = str(uuid.uuid4())
     pid = queue(wf, cid); wait_done(pid, cid)
     out = history(pid); imgs=[]
