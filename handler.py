@@ -108,7 +108,7 @@ def load_workflow():
     with open("/comfyui/workflows/realism_workflow_api.json") as f: 
         return json.load(f)
 
-def run_flow(pos, neg):
+def run_flow(pos, neg, number=1, creativity=1.0):
     available_nodes = get_available_nodes()
     required_nodes = ["StringPreview", "ImpactConcatConditionings"]
     missing_nodes = [node for node in required_nodes if node not in available_nodes]
@@ -146,6 +146,20 @@ def run_flow(pos, neg):
     wf["4"]["inputs"]["text"] = neg  # Negative prompt
     wf["2"]["inputs"]["seed"] = int(time.time()*1e6)%2**32  # Random seed
     
+    wf["11"]["inputs"]["batch_size"] = max(1, min(4, int(number)))
+    
+    creativity_loras = ["16", "20"]  # igbaddie-XL and epiCRealismXL-KiSSEnhancer_Lora
+    
+    if creativity > 0.5:
+        # High creativity: enable LoRAs
+        pass 
+    else:
+        # Low creativity: bypass LoRAs
+        for node_id in creativity_loras:
+            if node_id in wf:
+                wf[node_id]["inputs"]["strength_model"] = 0.0
+                wf[node_id]["inputs"]["strength_clip"] = 0.0
+    
     cid = str(uuid.uuid4())
     pid = queue(wf, cid); wait_done(pid, cid)
     out = history(pid); imgs=[]
@@ -157,8 +171,13 @@ def run_flow(pos, neg):
 def handler(event):
     start()
     data = event.get("input",{})
-    pos, neg = data.get("positive",""), data.get("negative","")
+    pos = data.get("positive","")
+    neg = data.get("negative","")
+    number = data.get("number", 1)
+    creativity = data.get("creativity", 1.0)
+    
     if not pos: return {"error":"positive is required"}
-    return {"images_base64": run_flow(pos, neg)}
+    
+    return {"images_base64": run_flow(pos, neg, number, creativity)}
 
 runpod.serverless.start({"handler": handler})
